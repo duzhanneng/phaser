@@ -42,6 +42,8 @@ var ImageFile = new Class({
         var extension = 'png';
         var normalMapURL;
 
+        this.url = url;
+
         if (IsPlainObject(key))
         {
             var config = key;
@@ -64,7 +66,7 @@ var ImageFile = new Class({
             type: 'image',
             cache: loader.textureManager,
             extension: extension,
-            responseType: 'blob',
+            responseType: 'arraybuffer',
             key: key,
             url: url,
             xhrSettings: xhrSettings,
@@ -105,19 +107,15 @@ var ImageFile = new Class({
 
         this.data.onload = function ()
         {
-            File.revokeObjectURL(_this.data);
-
             _this.onProcessComplete();
         };
 
         this.data.onerror = function ()
         {
-            File.revokeObjectURL(_this.data);
-
             _this.onProcessError();
         };
 
-        File.createObjectURL(this.data, this.xhrLoader.response, 'image/png');
+        this.data.src = this.url;
     },
 
     /**

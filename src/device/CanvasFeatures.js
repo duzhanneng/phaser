@@ -11,10 +11,10 @@ var CanvasPool = require('../display/canvas/CanvasPool');
  * These values are read-only and populated during the boot sequence of the game.
  * They are then referenced by internal game systems and are available for you to access
  * via `this.sys.game.device.canvasFeatures` from within any Scene.
- * 
+ *
  * @typedef {object} Phaser.Device.CanvasFeatures
  * @since 3.0.0
- * 
+ *
  * @property {boolean} supportInverseAlpha - Set to true if the browser supports inversed alpha.
  * @property {boolean} supportNewBlendModes - Set to true if the browser supports new canvas blend modes.
  */
@@ -27,9 +27,6 @@ var CanvasFeatures = {
 
 function checkBlendMode ()
 {
-    var pngHead = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAABAQMAAADD8p2OAAAAA1BMVEX/';
-    var pngEnd = 'AAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==';
-
     var magenta = new Image();
 
     magenta.onload = function ()
@@ -58,10 +55,10 @@ function checkBlendMode ()
             CanvasFeatures.supportNewBlendModes = (data[0] === 255 && data[1] === 0 && data[2] === 0);
         };
 
-        yellow.src = pngHead + '/wCKxvRF' + pngEnd;
+        yellow.src = '';
     };
 
-    magenta.src = pngHead + 'AP804Oa6' + pngEnd;
+    magenta.src = '';
 
     return false;
 }
